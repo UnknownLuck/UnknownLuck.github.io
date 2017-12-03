@@ -1,0 +1,138 @@
+/* Background colors */
+.bg-red {
+  background-color: #9e0e0e; !important;
+}
+
+.bg-dark-red {
+  background-color: #500707; !important;
+}
+
+/* Page header */
+.page-header[filter-color="red"] {
+    background: rgba(44, 44, 44, 0.2);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(158, 14, 14, .6));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(158, 14, 14, .6));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(158, 14, 14, .6));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(158, 14, 14, .6));
+    /* Standard syntax */
+}
+
+.page-header[filter-color="dark-red"] {
+    background: rgba(44, 44, 44, 0.2);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 7, 7, .6));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 7, 7, .6));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(80, 7, 7, .6));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(80, 7, 7, .6));
+    /* Standard syntax */
+}
+
+/* Text */
+#about h2 {
+  font-size: 36pt;
+}
+
+/* Links */
+a {
+  color: #f80a10; !important;
+}
+
+/* Images */
+#personal-picture {
+  padding:  6% 7% 6% 8.5%;
+}
+
+/* Section colors */
+.section-color-primary {
+  background-color: #eee; !important;
+}
+
+.section-color-secondary {
+  background-color: #aaa; !important;
+}
+
+/* About */
+#about-text {
+  margin: auto;
+  padding: 0 5% 0 1%;
+}
+
+/* Portfolio */
+#portfolio {
+  padding: 4%
+}
+
+#portfolio h2 {
+  font-weight: bold;
+}
+
+.project {
+  background-color: #999;
+  padding-top: 10px;
+  margin: 0 8px 0 8px;
+}
+
+/* Contact */
+#contact {
+  padding: 4%;
+}
+
+/* Footer */
+.footer {
+  color: #fff; !important;
+  padding-top: 10px;
+  text-align: right;
+}
+
+/* Horizontal break */
+.hr-primary, .hr-secondary {
+  font-family: FontAwesome;
+  text-align: center;
+  line-height: 1px;
+  height: 3px;
+  font-size: 3em;
+  border-width: 1px 0;
+  border-style: solid;
+  margin-bottom: 30px;
+
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -ms-box-sizing: content-box;
+  -o-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.hr-primary {
+  border-color: #bbb;
+}
+
+.hr-secondary {
+  border-color: #444;
+}
+
+.hr-primary:after, .hr-secondary:after {
+  content: '\f121';
+  display: inline;
+  padding: 0 0.3em;
+}
+
+.hr-primary:after {
+  color: #888;
+  background-color: #eee;
+}
+
+.hr-secondary:after {
+  color: #444;
+  background-color: #aaa;
+}
+
+x:-o-prefocus, .hr-primary:after, .hr-secondary:after {
+  content: "";
+}
