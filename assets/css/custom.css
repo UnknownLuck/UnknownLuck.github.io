@@ -34,19 +34,9 @@
     /* Standard syntax */
 }
 
-/* Text */
-#about h2 {
-  font-size: 36pt;
-}
-
 /* Links */
 a {
   color: #f80a10; !important;
-}
-
-/* Images */
-#personal-picture {
-  padding:  6% 7% 6% 8.5%;
 }
 
 /* Section colors */
@@ -58,25 +48,140 @@ a {
   background-color: #aaa; !important;
 }
 
+/* Navbar and Sidebar */
+@media screen and (max-width: 991px) {
+  .sidebar-collapse .navbar-collapse:before {
+    background: #d00606; !important;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#d00606 0%, #000 80%); !important;
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#d00606 0%, #000 80%); !important;
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d00606 0%, #000 80%); !important;
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d00606 0%, #000 80%); !important;
+  }
+
+  .navbar-collapse {
+    max-width: 70%;
+  }
+}
+
+/* Top of page */
+.navbar-logo {
+  height: 40%;
+  width: 40%;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-logo {
+    height: 80%;
+    width: 80%;
+  }
+
+  .h1-seo {
+    margin-top: 1%;
+    font-size: 28pt;
+  }
+
+  .h3-seo {
+    font-size: 16pt;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .navbar-logo {
+    margin-top: 10%;
+    height: 70%;
+    width: 70%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .navbar-logo {
+    margin-top: 3%;
+    height: 45%;
+    width: 45%;
+  }
+}
+
 /* About */
+#about {
+  margin: none; !important;
+
+}
+
+#personal-picture {
+  margin: auto;
+  margin-right: none;
+  margin-left: none;
+  padding:  6% 7% 6% 8.5%;
+}
+
+#about h2 {
+  font-size: 36pt;
+}
+
 #about-text {
   margin: auto;
+  margin-right: none;
+  margin-left: none;
   padding: 0 5% 0 1%;
 }
 
+@media screen and (max-width: 991px) {
+  #about h2 {
+    font-size: 24pt;
+    text-align: center;
+  }
+
+  #about-text {
+    padding: 0 5% 0 6%;
+  }
+}
+
+
 /* Portfolio */
 #portfolio {
-  padding: 4%
+  padding: 4%;
 }
 
 #portfolio h2 {
   font-weight: bold;
 }
 
+#portfolio h4 {
+  padding-left: 2%;
+}
+
 .project {
   background-color: #999;
   padding-top: 10px;
-  margin: 0 8px 0 8px;
+  margin: 0 1% 2% 1%;
+}
+
+.project-image {
+  margin-bottom: -6%;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+@media screen and (max-width: 991px) {
+  .row {
+    display: block;
+  }
+
+  .project {
+    margin: 0 2% 2% 2%;
+    clear: both;
+    align-items: center;
+  }
+
+  .project-image {
+    margin-bottom: -7%;
+    padding-right: 1%;
+    padding-left: 1%;
+  }
 }
 
 /* Contact */
@@ -100,6 +205,7 @@ a {
   font-size: 3em;
   border-width: 1px 0;
   border-style: solid;
+  margin: none;
   margin-bottom: 30px;
 
   -webkit-box-sizing: content-box;
@@ -134,5 +240,5 @@ a {
 }
 
 x:-o-prefocus, .hr-primary:after, .hr-secondary:after {
-  content: "";
+  content: '';
 }
