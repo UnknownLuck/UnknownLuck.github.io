@@ -60,11 +60,21 @@ a {
     background: -moz-linear-gradient(#d00606 0%, #000 80%); !important;
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(#d00606 0%, #000 80%); !important;
-  }
+}
 
   .navbar-collapse {
     max-width: 70%;
   }
+}
+
+@media screen and (max-width: 420px) {
+	.nav-open .sidebar-collapse .navbar-translate {
+        -webkit-transform: translate3d(-80%, 0, 0); !important;
+        -moz-transform: translate3d(-80%, 0, 0); !important;
+        -o-transform: translate3d(-80%, 0, 0); !important;
+        -ms-transform: translate3d(-80%, 0, 0); !important;
+        transform: translate3d(-80%, 0, 0); !important;
+    }
 }
 
 /* Top of page */
