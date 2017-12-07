@@ -1,10 +1,10 @@
 /* Background colors */
 .bg-red {
-  background-color: #9e0e0e; !important;
+  background-color: #9e0e0e !important;
 }
 
 .bg-dark-red {
-  background-color: #500707; !important;
+  background-color: #500707 !important;
 }
 
 /* Page header */
@@ -34,32 +34,27 @@
     /* Standard syntax */
 }
 
-/* Links */
-a {
-  color: #f80a10; !important;
-}
-
 /* Section colors */
 .section-color-primary {
-  background-color: #eee; !important;
+  background-color: #eee !important;
 }
 
 .section-color-secondary {
-  background-color: #aaa; !important;
+  background-color: #aaa !important;
 }
 
 /* Navbar and Sidebar */
 @media screen and (max-width: 991px) {
   .sidebar-collapse .navbar-collapse:before {
-    background: #d00606; !important;
+    background: #d00606 !important;
     /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#d00606 0%, #000 80%); !important;
+    background: -webkit-linear-gradient(#d00606 0%, #000 80%) !important;
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#d00606 0%, #000 80%); !important;
+    background: -o-linear-gradient(#d00606 0%, #000 80%) !important;
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#d00606 0%, #000 80%); !important;
+    background: -moz-linear-gradient(#d00606 0%, #000 80%) !important;
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#d00606 0%, #000 80%); !important;
+    background: linear-gradient(#d00606 0%, #000 80%) !important;
 }
 
   .navbar-collapse {
@@ -69,12 +64,18 @@ a {
 
 @media screen and (max-width: 420px) {
 	.nav-open .sidebar-collapse .navbar-translate {
-        -webkit-transform: translate3d(-80%, 0, 0); !important;
-        -moz-transform: translate3d(-80%, 0, 0); !important;
-        -o-transform: translate3d(-80%, 0, 0); !important;
-        -ms-transform: translate3d(-80%, 0, 0); !important;
-        transform: translate3d(-80%, 0, 0); !important;
+        -webkit-transform: translate3d(-80%, 0, 0) !important;
+        -moz-transform: translate3d(-80%, 0, 0) !important;
+        -o-transform: translate3d(-80%, 0, 0) !important;
+        -ms-transform: translate3d(-80%, 0, 0) !important;
+        transform: translate3d(-80%, 0, 0) !important;
     }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1007px) {
+  #navigation {
+    background-image: none !important;
+  }
 }
 
 /* Top of page */
@@ -116,11 +117,6 @@ a {
 }
 
 /* About */
-#about {
-  margin: none; !important;
-
-}
-
 #personal-picture {
   margin: auto;
   margin-right: none;
@@ -166,12 +162,12 @@ a {
 
 .project {
   background-color: #999;
-  padding-top: 10px;
+  padding-top: 8px;
   margin: 0 1% 2% 1%;
 }
 
 .project-image {
-  margin-bottom: -6%;
+  margin-bottom: -24pt;
   padding-right: 2%;
   padding-left: 2%;
 }
@@ -182,13 +178,11 @@ a {
   }
 
   .project {
-    margin: 0 2% 2% 2%;
-    clear: both;
-    align-items: center;
+    margin: auto;
   }
 
   .project-image {
-    margin-bottom: -7%;
+    margin-bottom: -24pt;
     padding-right: 1%;
     padding-left: 1%;
   }
@@ -201,9 +195,13 @@ a {
 
 /* Footer */
 .footer {
-  color: #fff; !important;
+  color: #fff !important;
   padding-top: 10px;
   text-align: right;
+}
+
+footer a {
+  color: #f80a10 !important;
 }
 
 /* Horizontal break */
