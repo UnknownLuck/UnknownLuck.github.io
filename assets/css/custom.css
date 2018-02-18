@@ -40,7 +40,7 @@
 }
 
 .section-color-secondary {
-  background-color: #aaa !important;
+  background-color: #bbb !important;
 }
 
 /* Navbar and Sidebar */
@@ -188,9 +188,41 @@
   }
 }
 
+/* Gallery */
+#gallery {
+  padding: 4%;
+}
+
+#gallery h2 {
+  font-weight: bold;
+}
+
+#gallery h4, #gallery p {
+  padding-left: 2%;
+}
+
+#gallery h4 {
+  margin-bottom: 4px;
+}
+
+#gallery p {
+  font-size: 13pt;
+  padding-right: 2%;
+  text-transform: inherit;
+  line-height: 1.2em;
+}
+
 /* Contact */
 #contact {
   padding: 4%;
+}
+
+#contact #contact-plugs {
+  padding-left: 6%;
+}
+
+#contact a {
+  color: #f80a10 !important;
 }
 
 /* Footer */
@@ -244,7 +276,7 @@ footer a {
 
 .hr-secondary:after {
   color: #444;
-  background-color: #aaa;
+  background-color: #bbb;
 }
 
 x:-o-prefocus, .hr-primary:after, .hr-secondary:after {
