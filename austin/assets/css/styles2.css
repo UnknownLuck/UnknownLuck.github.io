@@ -9,23 +9,12 @@ select {
 
 table {
     min-width: 80%;
-}
-
-.value,
-.key,
-.location {
-    min-width: 90% !important;
+    table-layout: fixed;
 }
 
 select {
     margin-bottom: 5px !important;
     margin-top: 5px !important;
-}
-
-#write {
-    margin-top: 30px !important;
-    display: block;
-    clear: both;
 }
 
 .input {
@@ -63,6 +52,7 @@ select {
 
 .full-width {
     min-width: 100%;
+    width: 100%;
 }
 
 .hide {
