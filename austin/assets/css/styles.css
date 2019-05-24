@@ -1,0 +1,141 @@
+/* ===== Page Header and Navbar ===== */
+
+.page-header[filter-color="red"] {
+    background: rgba(55, 11, 11, 0.3);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(55, 11, 11, 0.3), rgba(189, 21, 6, 0.6));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(55, 11, 11, 0.3), rgba(189, 21, 6, 0.6));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(55, 11, 11, 0.3), rgba(189, 21, 6, 0.6));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(55, 11, 11, 0.3), rgba(189, 21, 6, 0.6));
+    /* Standard syntax */
+}
+
+.partlist-page-header {
+    max-height: 120px !important;
+}
+
+.partlist-title {
+    margin: auto !important;
+    padding-top: 55px !important;
+    padding-bottom: 10px !important;
+    font-size: 30pt;
+}
+
+.navbar-margin-none {
+    margin-bottom: 0 !important;
+}
+
+/* ===== End Page Header and Navbar ===== */
+
+
+
+/* ===== Background Styling ===== */
+
+.bg-default {
+    background-color: rgb(122, 118, 118) !important;
+}
+
+.bg-primary {
+    background-color: rgb(207, 23, 7) !important;
+}
+
+.bg-info {
+    background-color: rgb(33, 149, 233) !important;
+}
+
+.bg-success {
+    background-color: #28ce1f !important;
+}
+
+.bg-danger {
+    background-color: rgb(216, 35, 35) !important;
+}
+
+.bg-warning {
+    background-color: rgb(255, 168, 54) !important;
+}
+
+/* ===== End Background Styling ===== */
+
+
+
+/* ===== Table Styling ===== */
+
+.part-list {
+    width: 100%;
+}
+
+thead {
+    background-color: #ccc;
+}
+
+td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+.component-img img, .img-col {
+    max-height: 100px;
+    width: auto;
+    margin: auto;
+    display: block;
+}
+
+.component-img-container img, .img-col {
+    max-height: 100px;
+    width: auto;
+    margin: auto;
+    display: block;
+}
+
+.item-dark {
+    background-color: #ddd;
+}
+
+.item input {
+    max-width: 60px;
+}
+
+/* ===== End Table Styling ===== */
+
+
+
+/* ===== Account ===== */
+
+.hide {
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* ===== End Account ====== */
+
+
+
+/* ===== Product Page ===== */
+
+#productImg {
+    border: 1px solid black;
+}
+
+#model {
+    color: #000;
+    font-size: 18pt;
+}
+
+#brand {
+    color: #4d4d4d;
+    font-size: 16pt;
+}
+
+#price {
+    color: #4d4d4d;
+    font-size: 12pt;
+}
+
+/* ===== End Product Page ===== */
