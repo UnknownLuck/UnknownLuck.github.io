@@ -14,7 +14,28 @@ firebase.initializeApp(config);
 
 // ===== End of Firebase Initialization =====
 
-var logsRef, database;
+
+// ===== Global Variables =====
+
+var logsRef, database,
+	reverseLogsOrder = true,
+	count = 0,
+	numberOfHeaders = 7,
+	tableIndex = 0;
+
+var carbIntakes = [];
+var units = [];
+var corrections = [];
+var nodeNames = [];
+
+var tbody = document.getElementById("tbody");
+var modal = document.getElementById("modalWindow");
+var logEditContent = document.getElementById("logEditContent");
+var noteModal = document.getElementById("viewNote");
+var removeModal = document.getElementById("removeConfirmation");
+
+// ===== End Global Variables =====
+
 
 (function () {
 	// ===== Database References =====
@@ -25,32 +46,40 @@ var logsRef, database;
 	// Reference the logs tree
 	logsRef = database.ref("/logs");
 
+	// ===== End Database References =====
+
+
 	// ===== Database Snapshot =====
-	logsRef.on("value", snapshot => {
+
+	logsRef.orderByChild("timestamp").on("value", snapshot => {
 		// Reset table body
 		document.getElementById("tbody").innerHTML = "";
 
-		var carbIntakes = [];
-		var units = [];
-		var corrections = [];
-
-		// Each log
-		snapshot.forEach(logSnapshot => {
-			createTable(logSnapshot);
-
-			carbIntakes.push(parseInt(logSnapshot.val().carbIntake, 10));
-			units.push(parseInt(logSnapshot.val().units, 10));
-			corrections.push(parseInt(logSnapshot.val().correction, 10));
-
-			tableIndex++;
+		snapshot.forEach(s => {
+			count++;
+			nodeNames.push(s.key);
 		});
 
+		// Reverse logs
+		if (reverseLogsOrder) {
+			for (var i = count - 1; i >= 0; i--) {
+				displayLogs(snapshot, i);
+			}
+		} else { // Don't reverse logs
+			for (var i = 0; i < count; i++) {
+				displayLogs(snapshot, i);
+			}
+		}
+
+		// Average data
 		var averageCarbIntake = 0,
 			averageUnits = 0,
 			averageCorrections = 0,
 			totalLogs = 0;
 
+		
 		// ===== Loop through data of each log =====
+
 		carbIntakes.forEach(value => {
 			averageCarbIntake += value;
 			totalLogs++;
@@ -63,19 +92,22 @@ var logsRef, database;
 		corrections.forEach(value => {
 			averageCorrections += value;
 		});
+
 		// ===== End loop through data of each log =====
 
-		// Average log data
+
+		// Average log data calculation
 		averageCarbIntake = Math.round(averageCarbIntake / totalLogs);
 		averageUnits = Math.round(averageUnits / totalLogs);
 		averageCorrections = Math.round(averageCorrections / totalLogs);
 
+		// No logs case
 		if (totalLogs == 0) {
 			averageCarbIntake = averageUnits = averageCorrections =
 				"Add a New Log!";
 		}
 
-		// Create 'new log' functionality
+		// Create 'Add New Log' functionality
 		// Create a new row for the given table index
 		var addLogRow = document
 			.getElementById("tbody")
@@ -97,6 +129,7 @@ var logsRef, database;
 			averageCorrections +
 			"</td><td></td><td></td></tr>";
 
+		
 		// ===== Modal =====
 
 		// Get the button that opens the modal
@@ -115,6 +148,7 @@ var logsRef, database;
 		// When the user clicks on <span> (x), close the modal
 		logSpan.onclick = () => {
 			modal.style.display = "none";
+
 			logEditContent.classList.add("hide");
 			viewNote.classList.add("hide");
 			removeModal.classList.add("hide");
@@ -133,7 +167,6 @@ var logsRef, database;
 
 		// ===== End Modal =====
 
-		tableIndex = 0;
 
 		// Add the newly created rows to an array
 		var rows = document
@@ -150,32 +183,30 @@ var logsRef, database;
 				rows[i].classList.add("item-dark");
 			}
 		}
+		resetVariables();
 	});
+
+	// ===== End Database Snapshot =====
 })();
 
-var tbody = document.getElementById("tbody");
-var modal = document.getElementById("modalWindow");
-var logEditContent = document.getElementById("logEditContent");
-var noteModal = document.getElementById("viewNote");
-var removeModal = document.getElementById("removeConfirmation");
+// ===== Log Management Functions =====
 
-var numberOfHeaders = 7,
-	tableIndex = 0;
+// Creates the table of log entries
+function displayLogs(snapshot, i) {
+	var logSnapshotVal = snapshot.val()[nodeNames[i]];
+	var logSnapshotKey = nodeNames[i];
 
-// On a submit action, close the modal window
-function removeModal() {
-	modal.style.display = "none";
+	createTable(logSnapshotVal, logSnapshotKey);
 
-	logEditContent.classList.add("hide");
-	viewNote.classList.add("hide");
-	removeModal.classList.add("hide");
+	carbIntakes.push(parseInt(logSnapshotVal.carbIntake, 10));
+	units.push(parseInt(logSnapshotVal.units, 10));
+	corrections.push(parseInt(logSnapshotVal.correction, 10));
+
+	tableIndex++;
 }
 
-
 // Creates the table for log data
-function createTable(logSnapshot) {
-	var logSnapshotVal = logSnapshot.val();
-	var logSnapshotKey = logSnapshot.key;
+function createTable(logSnapshotVal, logSnapshotKey) {
 
 	// Create a new row for the given table index
 	var tr = tbody.insertRow(tableIndex);
@@ -190,8 +221,7 @@ function createTable(logSnapshot) {
 		if (j == 0) {
 			// Handles date creation
 
-			cell.innerHTML = "<td>" + logSnapshotVal.date; +
-			"</td>";
+			cell.innerHTML = "<td>" + logSnapshotVal.date; + "</td>";
 		} else if (j == 1) {
 			// Handles time creation
 
@@ -258,14 +288,12 @@ function verifyRemove(span) {
 
 	var carryData = document.getElementsByClassName("carry")[0];
 
-	console.log(span.parentNode.parentNode.id);
-
 	carryData.id = span.parentNode.parentNode.id + "_";
 
 }
 
 // Removes a row of data
-function removePair() {
+function removeLog() {
 
 	var span = document.getElementsByClassName("carry")[0].id;
 
@@ -275,8 +303,6 @@ function removePair() {
 		realID += span[i];
 	}
 
-	console.log(span, realID);
-
 	var removeRow = document.getElementById(realID);
 
 	var removeRef = database.ref("/logs/" + removeRow.id);
@@ -284,23 +310,38 @@ function removePair() {
 	removeRow.parentNode.removeChild(removeRow);
 
 	removeRef.remove();
+
+	modal.style.display = "none";
+
+	logEditContent.classList.add("hide");
+	viewNote.classList.add("hide");
+	removeModal.classList.add("hide");
 }
 
 // Add new entry to database
 function addEntry() {
-	var date =
-		new Date().getUTCMonth() +
-		1 +
-		"/" +
-		new Date().getDate() +
-		"/" +
-		(new Date().getFullYear() - 2000);
+	var date = new Date().getUTCMonth() + 1 + "/" +
+		new Date().getDate() + "/" + (new Date().getFullYear() - 2000);
 
 	var time;
 	if (new Date().getMinutes() < 10) {
 		time = new Date().getHours() + ":0" + new Date().getMinutes();
 	} else {
 		time = new Date().getHours() + ":" + new Date().getMinutes();
+	}
+
+	if (new Date().getHours() > 12) {
+		if (new Date().getMinutes() < 10) {
+			time = (new Date().getHours() - 12) + ":0" + new Date().getMinutes() + " PM";
+		} else {
+			time = (new Date().getHours() - 12) + ":" + new Date().getMinutes() + " PM";
+		}
+	} else {
+		if (new Date().getMinutes() < 10) {
+			time = new Date().getHours() + ":0" + new Date().getMinutes() + " AM";
+		} else {
+			time = new Date().getHours() + ":" + new Date().getMinutes() + " AM";
+		}
 	}
 
 	var carbIntake = document.getElementById("carbIntake").value;
@@ -328,20 +369,26 @@ function addEntry() {
 		units: units,
 		correction: correction,
 		note: note,
-		totalUnits: totalUnits
+		totalUnits: totalUnits,
+		timestamp: firebase.database.ServerValue.TIMESTAMP
 	};
 
-	logsRef
-		.child(
-			"-" +
-			Math.random()
-			.toString(36)
-			.substr(2, 8) +
-			Math.random()
-			.toString(36)
-			.substr(2, 8)
-		)
-		.set(data);
+	logsRef.child("-" + Math.random().toString(36).substr(2, 8)
+					  + Math.random().toString(36).substr(2, 8)).set(data);
 
-	console.log("data:", data);
+	modal.style.display = "none";
+
+	logEditContent.classList.add("hide");
+	viewNote.classList.add("hide");
+	removeModal.classList.add("hide");
+}
+
+// Resets variables
+function resetVariables() {
+	count = 0;
+	tableIndex = 0;
+	carbIntakes = [];
+	units = [];
+	corrections = [];
+	nodeNames = [];
 }
