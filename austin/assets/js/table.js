@@ -20,12 +20,13 @@ firebase.initializeApp(config);
 var logsRef, database,
 	reverseLogsOrder = true,
 	count = 0,
-	numberOfHeaders = 7,
+	numberOfHeaders = 8,
 	tableIndex = 0;
 
 var carbIntakes = [];
 var units = [];
 var corrections = [];
+var totalUnits = [];
 var nodeNames = [];
 
 var tbody = document.getElementById("tbody");
@@ -75,9 +76,10 @@ var removeModal = document.getElementById("removeConfirmation");
 		var averageCarbIntake = 0,
 			averageUnits = 0,
 			averageCorrections = 0,
+			averageTotalUnits = 0;
 			totalLogs = 0;
 
-		
+
 		// ===== Loop through data of each log =====
 
 		carbIntakes.forEach(value => {
@@ -93,6 +95,10 @@ var removeModal = document.getElementById("removeConfirmation");
 			averageCorrections += value;
 		});
 
+		totalUnits.forEach(value => {
+			averageTotalUnits += value;
+		});
+
 		// ===== End loop through data of each log =====
 
 
@@ -100,10 +106,11 @@ var removeModal = document.getElementById("removeConfirmation");
 		averageCarbIntake = Math.round(averageCarbIntake / totalLogs);
 		averageUnits = Math.round(averageUnits / totalLogs);
 		averageCorrections = Math.round(averageCorrections / totalLogs);
+		averageTotalUnits = Math.round(averageTotalUnits / totalLogs);
 
 		// No logs case
 		if (totalLogs == 0) {
-			averageCarbIntake = averageUnits = averageCorrections =
+			averageCarbIntake = averageUnits = averageCorrections = averageTotalUnits = 
 				"Add a New Log!";
 		}
 
@@ -114,7 +121,7 @@ var removeModal = document.getElementById("removeConfirmation");
 			.insertRow(tableIndex);
 
 		addLogRow.innerHTML =
-			"<tr id='addData'><td colspan='6'><button id='addLog' onclick=''>Add New Log</button></td><td></td></tr>";
+			"<tr id='addData'><td colspan='" + numberOfHeaders + "'><button id='addLog' onclick=''>Add New Log</button></td><td></td></tr>";
 
 		var dataViewRow = document
 			.getElementById("tbody")
@@ -127,9 +134,9 @@ var removeModal = document.getElementById("removeConfirmation");
 			averageUnits +
 			"</td><td>" +
 			averageCorrections +
-			"</td><td></td><td></td></tr>";
+			"</td><td>" + averageTotalUnits + "</td><td></td><td></td></tr>";
 
-		
+
 		// ===== Modal =====
 
 		// Get the button that opens the modal
@@ -201,6 +208,7 @@ function displayLogs(snapshot, i) {
 	carbIntakes.push(parseInt(logSnapshotVal.carbIntake, 10));
 	units.push(parseInt(logSnapshotVal.units, 10));
 	corrections.push(parseInt(logSnapshotVal.correction, 10));
+	totalUnits.push(parseInt(logSnapshotVal.totalUnits, 10));
 
 	tableIndex++;
 }
@@ -218,39 +226,34 @@ function createTable(logSnapshotVal, logSnapshotKey) {
 		var cell = tr.insertCell(j);
 
 		// Global Placement of Log Data in Table
-		if (j == 0) {
-			// Handles date creation
+		if (j == 0) { // Handles date creation
 
 			cell.innerHTML = "<td>" + logSnapshotVal.date; + "</td>";
-		} else if (j == 1) {
-			// Handles time creation
 
-			cell.innerHTML = "<td>" + logSnapshotVal.time; +
-			"</td>";
-		} else if (j == 2) {
-			// Handles carb intake Creation
+		} else if (j == 1) { // Handles time creation
 
-			cell.innerHTML = "<td>" + logSnapshotVal.carbIntake; +
-			"</td>";
-		} else if (j == 3) {
-			// Handles unit creation
+			cell.innerHTML = "<td>" + logSnapshotVal.time; + "</td>";
 
-			cell.innerHTML = "<td>" + logSnapshotVal.units; +
-			"</td>";
-		} else if (j == 4) {
-			// Handles correction creation
+		} else if (j == 2) { // Handles carb intake Creation
 
-			cell.innerHTML = "<td>" + logSnapshotVal.correction; +
-			"</td>";
-		} else if (j == 5) {
-			// Handles note creation
+			cell.innerHTML = "<td>" + logSnapshotVal.carbIntake; + "</td>";
+
+		} else if (j == 3) { // Handles unit creation
+
+			cell.innerHTML = "<td>" + logSnapshotVal.units; + "</td>";
+
+		} else if (j == 4) { // Handles correction creation
+
+			cell.innerHTML = "<td>" + logSnapshotVal.correction; + "</td>";
+
+		} else if (j == 5) { // Handles total units creation
+
+			cell.innerHTML = "<td>" + logSnapshotVal.totalUnits + "</td>";
+
+		} else if (j == 6) { // Handles note creation
 
 			cell.innerHTML =
-				"<td>" +
-				"<a onclick='' id='note-" +
-				tableIndex +
-				"' class='note'>Note</a>" +
-				"</td>";
+				"<td><a onclick='' id='note-" + tableIndex + "' class='note'>Note</a></td>";
 
 			var noteID = document.getElementById("note-" + tableIndex);
 
@@ -272,10 +275,11 @@ function createTable(logSnapshotVal, logSnapshotKey) {
 
 				noteModal.classList.remove("hide");
 			};
-		} else if (j == numberOfHeaders - 1) {
-			// Handles removal creation
-			cell.innerHTML =
-				"<span class='removePair' onclick='verifyRemove(this)'>&times;</span>";
+
+		} else if (j == numberOfHeaders - 1) { // Handles removal creation
+
+			cell.innerHTML = "<span class='removePair' onclick='verifyRemove(this)'>&times;</span>";
+
 		}
 	}
 }
@@ -316,38 +320,44 @@ function removeLog() {
 	logEditContent.classList.add("hide");
 	viewNote.classList.add("hide");
 	removeModal.classList.add("hide");
+
 }
 
 // Add new entry to database
 function addEntry() {
-	var date = new Date().getUTCMonth() + 1 + "/" +
-		new Date().getDate() + "/" + (new Date().getFullYear() - 2000);
+
+	var day = new Date().getDate();
+	var month = new Date().getUTCMonth();
+	var year = new Date().getFullYear();
+	var hours = new Date().getHours();
+	var minutes = new Date().getMinutes();
+
+	var date = month + 1 + "/" + day + "/" + (year - 2000);
 
 	var time;
-	if (new Date().getMinutes() < 10) {
-		time = new Date().getHours() + ":0" + new Date().getMinutes();
+	if (minutes < 10) {
+		time = hours + ":0" + minutes;
 	} else {
-		time = new Date().getHours() + ":" + new Date().getMinutes();
+		time = hours + ":" + minutes;
 	}
 
-	if (new Date().getHours() > 12) {
-		if (new Date().getMinutes() < 10) {
-			time = (new Date().getHours() - 12) + ":0" + new Date().getMinutes() + " PM";
+	if (hours > 12) {
+		if (minutes < 10) {
+			time = (hours - 12) + ":0" + minutes + " PM";
 		} else {
-			time = (new Date().getHours() - 12) + ":" + new Date().getMinutes() + " PM";
+			time = (hours - 12) + ":" + minutes + " PM";
 		}
 	} else {
-		if (new Date().getMinutes() < 10) {
-			time = new Date().getHours() + ":0" + new Date().getMinutes() + " AM";
+		if (minutes < 10) {
+			time = hours + ":0" + minutes + " AM";
 		} else {
-			time = new Date().getHours() + ":" + new Date().getMinutes() + " AM";
+			time = hours + ":" + minutes + " AM";
 		}
 	}
 
-	var carbIntake = document.getElementById("carbIntake").value;
+	var carbIntake = document.getElementById("carbs").value;
 
 	var units = carbIntake / 12;
-
 	if (units % 1 < 0.5) {
 		units = Math.floor(units);
 	} else {
@@ -355,11 +365,8 @@ function addEntry() {
 	}
 
 	var glucose = document.getElementById("glucose").value;
-
 	var correction = (120 - glucose) / 40; // What is the cutoff for any given glucose level?
-
 	var totalUnits = units + correction;
-
 	var note = document.getElementById("note").value;
 
 	var data = {
@@ -370,17 +377,19 @@ function addEntry() {
 		correction: correction,
 		note: note,
 		totalUnits: totalUnits,
-		timestamp: firebase.database.ServerValue.TIMESTAMP
+		timestamp: firebase.database.ServerValue.TIMESTAMP,
+		glucose: gluecose
 	};
 
 	logsRef.child("-" + Math.random().toString(36).substr(2, 8)
-					  + Math.random().toString(36).substr(2, 8)).set(data);
+		+ Math.random().toString(36).substr(2, 8)).set(data);
 
 	modal.style.display = "none";
 
 	logEditContent.classList.add("hide");
 	viewNote.classList.add("hide");
 	removeModal.classList.add("hide");
+
 }
 
 // Resets variables

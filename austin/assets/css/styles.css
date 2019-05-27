@@ -13,11 +13,11 @@
     /* Standard syntax */
 }
 
-.partlist-page-header {
+.logs-page-header {
     max-height: 120px !important;
 }
 
-.partlist-title {
+.logs-title {
     margin: auto !important;
     padding-top: 55px !important;
     padding-bottom: 10px !important;
@@ -64,7 +64,13 @@
 
 /* ===== Table Styling ===== */
 
-.part-list {
+table {}
+
+.table-container {
+    overflow-x: scroll;
+}
+
+.logs {
     width: 100%;
 }
 
@@ -116,79 +122,8 @@ td, th {
 /* ===== End Account ====== */
 
 
-button {
-    font-size: 16pt;
-}
 
-input,
-select {
-    font-size: 14pt;
-}
-
-table {
-    min-width: 80%;
-    table-layout: fixed;
-}
-
-select {
-    margin-bottom: 5px !important;
-    margin-top: 5px !important;
-}
-
-.input {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-}
-
-.button {
-    clear: both;
-    display: block;
-    margin-top: 10px !important;
-    margin-top: 10px !important;
-}
-
-.button-two {
-    margin-top: 10px;
-}
-
-.center {
-    margin: auto;
-    max-width: 100%;
-}
-
-.left-text {
-    text-align: left !important;
-}
-
-.right-text {
-    text-align: right !important;
-}
-
-.center-text {
-    text-align: center !important;
-}
-
-.full-width {
-    min-width: 100%;
-    width: 100%;
-}
-
-.hide {
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    display: none !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-.note {}
-
-.note:hover,
-.note:focus {
-    color: blue !important;
-}
-
+/* ===== Modal ===== */
 
 /* The Modal (background) */
 .modal {
@@ -248,4 +183,76 @@ select {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* ===== End Modal ===== */
+
+
+
+button {
+    font-size: 16pt;
+}
+
+input,
+select {
+    font-size: 14pt;
+}
+
+select {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+.input {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.button {
+    clear: both;
+    display: block;
+    margin-top: 10px !important;
+    margin-top: 10px !important;
+}
+
+.button-two {
+    margin-top: 10px;
+}
+
+.center {
+    margin: auto;
+    max-width: 100%;
+}
+
+.left-text {
+    text-align: left !important;
+}
+
+.right-text {
+    text-align: right !important;
+}
+
+.center-text {
+    text-align: center !important;
+}
+
+.full-width {
+    min-width: 100%;
+    width: 100%;
+}
+
+.hide {
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.note {}
+
+.note:hover,
+.note:focus {
+    color: blue !important;
 }
