@@ -22,118 +22,124 @@
 
 <body class="landing-page sidebar-collapse">
 
-	<!-- Modal -->
-	<div id="modalWindow" class="modal center-text">
-		<div id="newLog" class="modal-content">
-			<span class="close">&times;</span>
-			<div id="logEditContent" class="center hide">
-				<table>
-					<thead>
-						<th class="right-text">Type</th>
-						<th>Entry</th>
-					</thead>
+	<div id="page-container">
+		<div id="content-wrap">
 
-					<tbody id="logEntryBody">
-						<tr class="item">
-							<td class="right-text">Carbs:</td>
-							<td class="left-text full-width">
-								<input type="number" id="carbs" class="full-width" min="0" value="0" />
-							</td>
-						</tr>
-
-						<tr class="item-dark">
-							<td class="right-text">Glucose:</td>
-							<td class="left-text full-width">
-								<input type="number" id="glucose" class="full-width" min="0" value="0" />
-							</td>
-						</tr>
-
-						<tr class="item">
-							<td class="right-text">Notes:</td>
-							<td class="left-text full-width">
-								<input type="text" id="note" class="full-width" />
-							</td>
-						</tr>
-
-						<tr class="item-dark">
-							<td colspan="2">
-								<button class="full-width" onclick="addEntry()">
-									Add Entry
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div id="viewNote" class="center hide"></div>
-			<div id="removeConfirmation" class="center hide">
-
-				<p class="carry">Are you sure you want to remove this entry?</p>
-
-				<button class="full-width" onclick="removeLog()">Yes</button>
-
-			</div>
-		</div>
-	</div>
-	<!-- End Modal -->
-
-	<div class="wrapper">
-		<div class="page-header page-header-small logs-page-header">
-			<div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/bg8.jpg');">
-			</div>
-			<div class="container">
-				<div class="content-center">
-					<h2 class="title logs-title">Logs</h2>
-				</div>
-			</div>
-		</div>
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<div class="block col-lg-12 ml-auto mr-auto table-container">
-						<table class="logs">
+			<!-- Modal -->
+			<div id="modalWindow" class="modal center-text">
+				<div id="newLog" class="modal-content">
+					<span class="close">&times;</span>
+					<div id="logEditContent" class="center hide">
+						<table>
 							<thead>
-								<tr>
-									<th>Date</th>
-									<th>Time</th>
-									<th>Carbs</th>
-									<th>Units</th>
-									<th>Correction</th>
-									<th>Total Units</th>
-									<th>Notes</th>
-									<th></th>
-								</tr>
+								<th class="right-text">Type</th>
+								<th>Entry</th>
 							</thead>
 
-							<tbody id="tbody">
-								<!--Dynamically generated table data-->
+							<tbody id="logEntryBody">
+								<tr class="item">
+									<td class="right-text">Carbs:</td>
+									<td class="left-text full-width">
+										<input type="number" id="carbs" class="full-width" min="0" value="0" />
+									</td>
+								</tr>
+
+								<tr class="item-dark">
+									<td class="right-text">Glucose:</td>
+									<td class="left-text full-width">
+										<input type="number" id="glucose" class="full-width" min="0" value="0" />
+									</td>
+								</tr>
+
+								<tr class="item">
+									<td class="right-text">Notes:</td>
+									<td class="left-text full-width">
+										<input type="text" id="note" class="full-width" />
+									</td>
+								</tr>
+
+								<tr class="item-dark">
+									<td colspan="2">
+										<button class="full-width" onclick="addEntry()">
+											Add Entry
+										</button>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-			</div>
-		</div>
+					<div id="viewNote" class="center hide"></div>
+					<div id="removeConfirmation" class="center hide">
 
-		<footer class="footer footer-default">
-			<div class="container">
-				<nav>
-					<ul>
-						<li>
-							<a href="https://unknownluck.github.io">
-								UnknownLuck
-							</a>
-						</li>
-					</ul>
-				</nav>
-				<div class="copyright">
-					&copy;
-					<script>
-						document.write(new Date().getFullYear());
-					</script>
-					Glucose Tracker
+						<p class="carry">Are you sure you want to remove this entry?</p>
+
+						<button class="full-width" onclick="removeLog()">Yes</button>
+
+					</div>
 				</div>
 			</div>
-		</footer>
+			<!-- End Modal -->
+
+			<div class="wrapper">
+				<div class="page-header page-header-small logs-page-header">
+					<div class="page-header-image" data-parallax="true"
+						style="background-image: url('./assets/img/bg8.jpg');">
+					</div>
+					<div class="container">
+						<div class="content-center">
+							<h2 class="title logs-title">Logs</h2>
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<div class="container">
+						<div class="row">
+							<div class="block col-lg-12 ml-auto mr-auto table-container">
+								<table class="logs">
+									<thead>
+										<tr>
+											<th>Date</th>
+											<th>Time</th>
+											<th>Carbs</th>
+											<th>Units</th>
+											<th>Correction</th>
+											<th>Total Units</th>
+											<th>Notes</th>
+											<th></th>
+										</tr>
+									</thead>
+
+									<tbody id="tbody">
+										<!--Dynamically generated table data-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<footer class="footer footer-default" id="footer">
+				<div class="container">
+					<nav>
+						<ul>
+							<li>
+								<a href="https://unknownluck.github.io">
+									UnknownLuck
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="copyright">
+						&copy;
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						Glucose Tracker
+					</div>
+				</div>
+			</footer>
+		</div>
 	</div>
 
 </body>
