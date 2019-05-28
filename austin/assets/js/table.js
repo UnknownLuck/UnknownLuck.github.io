@@ -121,7 +121,7 @@ var removeModal = document.getElementById("removeConfirmation");
 			.insertRow(tableIndex);
 
 		addLogRow.innerHTML =
-			"<tr id='addData'><td colspan='" + numberOfHeaders + "'><button id='addLog' onclick=''>Add New Log</button></td><td></td></tr>";
+			"<tr id='addData'><td colspan='" + numberOfHeaders + "'><button id='addLog' onclick=''>Add New Log</button></td></tr>";
 
 		var dataViewRow = document
 			.getElementById("tbody")
@@ -378,7 +378,7 @@ function addEntry() {
 		note: note,
 		totalUnits: totalUnits,
 		timestamp: firebase.database.ServerValue.TIMESTAMP,
-		glucose: gluecose
+		glucose: glucose
 	};
 
 	logsRef.child("-" + Math.random().toString(36).substr(2, 8)
