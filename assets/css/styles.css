@@ -147,6 +147,7 @@
 
 #about h2 {
   font-size: 36pt;
+  text-align: center;
 }
 
 #about-text {
@@ -171,7 +172,7 @@
 
 
 
-/* ===== Portfolio & Printing ===== */
+/* ===== Portfolio, Printing, & Videos ===== */
 
 #portfolio, #printing {
   padding: 4%;
@@ -185,20 +186,33 @@
   padding-left: 2%;
 }
 
-.project {
+.project, .project3d, .video {
   background-color: #999;
   padding-top: 8px;
   margin: 0 1% 2% 1%;
+}
+
+.project, .project3d, .video a{
   text-decoration-line: none !important;
   color: black;
 }
 
+.video {
+  margin: 0 1% 2% 1%;
+  padding-top: 8px;
+  background-color: #999;
+}
+
 .project:hover,
-.project:focus {
+.project:focus,
+.video:hover a,
+.video:focus a {
   color: #f80a10 !important;
 }
 
-.project-image {
+.project-image,
+.project3d-image,
+.video-image {
   margin-bottom: -24pt;
   padding-right: 2%;
   padding-left: 2%;
@@ -209,11 +223,17 @@
     display: block;
   }
 
-  .project {
+  .project,
+  .project3d,
+  .video {
     margin: auto;
+    margin-bottom: 2%;
+    padding-bottom: 2px;
   }
 
-  .project-image {
+  .project-image,
+  .project3d-image,
+  .video-image {
     margin-bottom: -24pt;
     padding-right: 1%;
     padding-left: 1%;
