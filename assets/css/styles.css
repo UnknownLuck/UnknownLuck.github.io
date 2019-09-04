@@ -171,17 +171,17 @@
 
 
 
-/* ===== Portfolio ===== */
+/* ===== Portfolio & Printing ===== */
 
-#portfolio {
+#portfolio, #printing {
   padding: 4%;
 }
 
-#portfolio h2 {
+#portfolio h2, #printing h2 {
   font-weight: bold;
 }
 
-#portfolio h4 {
+#portfolio h4, #printing h4 {
   padding-left: 2%;
 }
 
@@ -224,33 +224,33 @@
 
 
 
-/* ===== Gallery ===== */
+/* ===== Videos ===== */
 
-#gallery {
+#videos {
   padding: 4%;
 }
 
-#gallery h2 {
+#videos h2 {
   font-weight: bold;
 }
 
-#gallery h4,
-#gallery p {
+#videos h4,
+#videos p {
   padding-left: 2%;
 }
 
-#gallery h4 {
+#videos h4 {
   margin-bottom: 4px;
 }
 
-#gallery p {
+#videos p {
   font-size: 13pt;
   padding-right: 2%;
   text-transform: inherit;
   line-height: 1.2em;
 }
 
-/* ===== End Gallery ===== */
+/* ===== End videos ===== */
 
 
 
