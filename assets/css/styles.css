@@ -192,7 +192,7 @@
   margin: 0 1% 2% 1%;
 }
 
-.project, .project3d, .video a{
+.project, .project3d a, .video a{
   text-decoration-line: none !important;
   color: black;
 }
@@ -206,7 +206,9 @@
 .project:hover,
 .project:focus,
 .video:hover a,
-.video:focus a {
+.video:focus a,
+.project3d:hover a,
+.project3d:focus a {
   color: #f80a10 !important;
 }
 
@@ -240,7 +242,22 @@
   }
 }
 
-/* ===== End Portfolio ===== */
+.my-design-container {
+  position: relative;
+}
+
+.my-design {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding-right: 1%;
+  width: 12%;
+  min-width: 40px;
+  max-width: 192px;
+  height: auto;
+}
+
+/* ===== End Portfolio, Printing, & Videos ===== */
 
 
 
@@ -286,6 +303,10 @@
 
 #contact a {
   color: #f80a10 !important;
+}
+
+#contact h2 {
+  font-weight: bold;
 }
 
 /* ===== End Contact ===== */
